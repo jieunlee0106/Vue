@@ -20,7 +20,7 @@
   <div id="app">
     <h1>박스 색상 바꾸기</h1>
     <h3>색상 : {{ color }} </h3>
-    <div class="box"  > </div>
+    <div @click="colorChangeToggle" class="box" > </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -30,11 +30,12 @@
       el: '#app',
       data: {
         colors : ['red', 'orange', 'yellow', 'green', 'blue', 'violet'],
-        color: 'red',
+        color: '',
       },
-      method: {
+      methods: {
         colorChangeToggle: function () {
-          this.color = this.colors[Math.random()*colors.length]
+          this.color = this.colors[0]
+          console.log(color)
         }
       },
     })

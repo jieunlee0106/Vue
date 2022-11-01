@@ -299,11 +299,13 @@
           
           console.log(myMBTI)
           this.MBTI = []
-
-          window.open(`https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-${myMBTI}`)
+          if (myMBTI.length === 4) {
+          window.open(`https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-${myMBTI}`)}
+          else {
+            alert('유형을 모두선택해 주세요')
+          }
         },
         
-
       }
 
     })
