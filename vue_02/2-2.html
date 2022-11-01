@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Noto Sans KR', sans-serif;
+      color: rgb(38, 38, 38);
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: #50B8E7;
+    }
+
+    .buttonArea {
+      margin: 0 auto;
+      width: 80%;
+    }
+
+    .buttonRow {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      height: 80px;
+    }
+
+    .btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 45%;
+      border: 1px solid #50B8E7;
+      cursor: pointer;
+    }
+
+    .clear {
+      margin-top: 10px;
+      outline: none;
+      background: none;
+      border: 1px solid #50B8E7;
+      width: 100px;
+      height: 50px;
+      cursor: pointer;
+      font-size: large;
+    }
+
+    .clearhover {
+      background-color: white
+    }
+
+    .type {
+      font-size: x-large;
+      font-weight: bold;
+    }
+
+    .selected {
+      background-color: #B9E2F5;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <h1>버튼 클릭하기</h1>
+      <section class="buttonArea">
+
+        <div class="buttonRow">
+          <div @click="blueModeToggle1" class="btn" :class="theme1">
+            <span class="type">1</span>
+          </div>
+
+          <div @click="blueModeToggle2" class="btn" :class="theme2">
+            <span class="type">2</span>
+          </div>
+        </div>
+
+        <div class="buttonRow">
+          <div @click="blueModeToggle3" class="btn" :class="theme3">
+            <span class="type">3</span>
+          </div>
+          <div @click="blueModeToggle4" class="btn" :class="theme4">
+            <span class="type">4</span>
+          </div>
+        </div>
+      </section>
+      <button @click="allClear" class="clear" >전체 해제</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        checked: false,
+        checked1: false,
+        checked2: false,
+        checked3: false,
+        checked4: false,
+        theme1: 'btn',
+        theme2: 'btn',
+        theme3: 'btn',
+        theme4: 'btn',
+      },
+
+
+      methods: {
+
+        blueModeToggle1: function() {
+          this.checked1 = !this.checked1
+          if (this.checked1){
+            this.theme1 = 'selected'
+          } else {
+            this.theme1 = 'clearhover'
+          }
+        },
+
+        blueModeToggle2: function() {
+          this.checked2 = !this.checked2
+          if (this.checked2){
+            this.theme2 = 'selected'
+          } else {
+            this.theme2 = 'clearhover'
+          }
+        },
+
+        blueModeToggle3: function() {
+          this.checked3 = !this.checked3
+          if (this.checked3){
+            this.theme3 = 'selected'
+          } else {
+            this.theme3 = 'clearhover'
+          }
+        },
+
+        blueModeToggle4: function() {
+          this.checked4 = !this.checked4
+          if (this.checked4){
+            this.theme4 = 'selected'
+          } else {
+            this.theme4 = 'clearhover'
+          }
+        },
+
+        allClear: function () {
+            this.theme1 = 'clearhover'
+            this.theme2 = 'clearhover'
+            this.theme3 = 'clearhover'
+            this.theme4 = 'clearhover'
+
+        }
+          
+        },
+
+    })
+  </script>
+</body>
+</html>
