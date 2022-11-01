@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Noto Sans KR', sans-serif;
+      color: rgb(38, 38, 38);
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: #50B8E7;
+    }
+
+    .buttonArea {
+      margin: 0 auto;
+      width: 80%;
+    }
+
+    .buttonRow {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      height: 80px;
+    }
+
+    .btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 45%;
+      border: 1px solid #50B8E7;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 10px;
+      outline: none;
+      background: none;
+      border: 1px solid #50B8E7;
+      width: 100px;
+      height: 50px;
+      cursor: pointer;
+      font-size: large;
+    }
+
+    .result:hover {
+      background-color: #B9E2F5;
+    }
+
+    .type {
+      font-size: x-large;
+      font-weight: bold;
+    }
+
+    .selected {
+      background-color: #B9E2F5;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <h1>MBTI 검사기</h1>
+      
+
+      <section class="buttonArea">
+
+
+        <div class="buttonRow">
+          <div @click="ToggleE" class="btn" :class="themeE">
+            <span class="type">E</span>
+            <span>외향형</span>
+          </div>
+          <div @click="ToggleI"  class="btn" :class="themeI">
+            <span class="type">I</span>
+            <span>내향형</span>
+          </div>
+        </div>
+
+
+
+        <div class="buttonRow">
+          <div @click="ToggleS"  class="btn" :class="themeS">
+            <span class="type">S</span>
+            <span>감각형</span>
+          </div>
+          <div @click="ToggleN"  class="btn" :class="themeN">
+            <span class="type">N</span>
+            <span>직관형</span>
+          </div>
+        </div>
+
+
+
+        <div class="buttonRow">
+          <div @click="ToggleT"  class="btn" :class="themeT">
+            <span class="type">T</span>
+            <span>사고형</span>
+          </div>
+          <div @click="ToggleF"  class="btn" :class="themeF">
+            <span class="type">F</span>
+            <span>감정형</span>
+          </div>
+        </div>
+
+
+
+        <div class="buttonRow">
+          <div @click="ToggleJ"  class="btn" :class="themeJ">
+            <span class="type">J</span>
+            <span>판단형</span>
+          </div>
+          <div @click="ToggleP"  class="btn" :class="themeP">
+            <span class="type">P</span>
+            <span>인식형</span>
+          </div>
+        </div>
+
+      </section>
+
+
+      <button @click="Result" class="result" >결과 보기</button>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+
+        BASE_URL: 'https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-',
+        mbtiUrl: '',
+        checkI: false ,
+        checkE: false ,
+
+        checkN: false ,
+        checkS: false ,
+
+        checkF: false ,
+        checkT: false ,
+
+        checkP: false ,
+        checkS: false ,
+
+        themeI: '',
+        themeE: '',
+
+        themeN: '',
+        themeS: '',
+
+        themeF: '',
+        themeT: '',
+
+        themeP: '',
+        themeJ: '',
+
+        MBTI: [],
+      },
+
+      methods: {
+        ToggleI: function () {
+          this.checkI = !this.checkI
+          if (this.checkI) {
+            this.themeI = 'selected'
+            this.themeE = ''
+
+          }  else {
+            this.themeI = ''
+
+            }
+        },
+
+        ToggleE: function () {
+          this.checkE = !this.checkE
+          if (this.checkE) {
+            this.themeE = 'selected'
+            this.themeI = ''
+
+          }  else {
+            this.themeE = ''
+
+            }
+        },
+
+        ToggleN: function () {
+          this.checkN = !this.checkN
+          if (this.checkN) {
+            this.themeN = 'selected'
+            this.themeS = ''
+
+          }  else {
+            this.themeN = ''
+
+            }
+        },
+
+        ToggleS: function () {
+          this.checkS = !this.checkS
+          if (this.checkS) {
+            this.themeS = 'selected'
+            this.themeN = ''
+
+          }  else {
+            this.themeS = ''
+
+            }
+        },
+
+        ToggleT: function () {
+          this.checkT = !this.checkT
+          if (this.checkT) {
+            this.themeT = 'selected'
+            this.themeF = ''
+
+          }  else {
+            this.themeT = ''
+
+            }
+        },
+
+        ToggleF: function () {
+          this.checkF = !this.checkF
+          if (this.checkF) {
+            this.themeF = 'selected'
+            this.themeT = ''
+
+          }  else {
+            this.themeF = ''
+
+            }
+        },
+
+        ToggleP: function () {
+          this.checkP = !this.checkP
+          if (this.checkP) {
+            this.themeP = 'selected'
+            this.themeJ = ''
+
+          }  else {
+            this.themeP = ''
+
+            }
+        },
+
+        ToggleJ: function () {
+          this.checkJ = !this.checkJ
+          if (this.checkJ) {
+            this.themeJ = 'selected'
+            this.themeP = ''
+
+          }  else {
+            this.themeJ = ''
+
+            }
+        },
+
+        Result: function () {
+          if (this.themeI === 'selected') {
+            this.MBTI.push('I')
+          } else {
+            this.MBTI.push('E')
+          }
+          if (this.themeN === 'selected') {
+            this.MBTI.push('N')
+          } else {
+            this.MBTI.push('S')
+          }
+          if (this.themeT === 'selected') {
+            this.MBTI.push('T')
+          } else {
+            this.MBTI.push('F')
+          }
+          if (this.themeP === 'selected') {
+            this.MBTI.push('P')
+          } else {
+            this.MBTI.push('J')
+          }
+          console.log(this.MBTI)
+          const myMBTI = this.MBTI[0] + this.MBTI[1] + this.MBTI[2] + this.MBTI[3]
+          
+          console.log(myMBTI)
+          this.MBTI = []
+
+          window.open(`https://www.16personalities.com/ko/%EC%84%B1%EA%B2%A9%EC%9C%A0%ED%98%95-${myMBTI}`)
+        },
+        
+
+      }
+
+    })
+  </script>
+</body>
+</html>
