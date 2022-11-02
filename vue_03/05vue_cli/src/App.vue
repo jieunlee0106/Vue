@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>App</h1>
-    <input type="text">
+    <input type="text" v-model="appData" @keyup.enter="createAppData">
     <h3>parentData: {{}}</h3>
     <h3>childData: {{}}</h3>
     <AppParent/>
@@ -20,8 +20,10 @@ export default {
   components: {
     AppParent,
     AppChild
-  }
+  },
+
 }
+
 </script>
 
 <style>
