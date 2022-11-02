@@ -5,7 +5,10 @@
     <h3>parentData: {{}}</h3>
     <h3>childData: {{}}</h3>
     <AppParent/>
-    <AppChild/>
+    <AppChild
+    :dynamic-props="dynamicProps"
+    @child
+    />
     
 
   </div>
@@ -21,7 +24,11 @@ export default {
     AppParent,
     AppChild
   },
-
+  data: function(){
+    return {
+      dynamicProps
+    }
+  }
 }
 
 </script>
