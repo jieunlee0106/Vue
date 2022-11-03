@@ -10,7 +10,7 @@
     </div>
     <div style="display: flex;">
       <div class="container">
-      <button v-for="time in times" :key=time class="btn" @click="toggleBtn">{{ time }}</button>
+      <button v-for="time in times" :key=time  @click="toggleBtn">{{ time }}</button>
       </div>
     </div>
     <br>
@@ -18,7 +18,7 @@
     <hr style="color: #0F4C81;">
     <br>
     <br>
-    <h3 style="display: flex;">선택 시간: {{}}</h3>
+    <h3 style="display: flex;">선택 시간: {{selectTime}}</h3>
 
   </div>
 </template>
@@ -34,9 +34,10 @@ export default {
       "00:00","00:30","01:00","01:30","02:00","02:30","03:00","03:30","04:00","04:30",
       "05:00","05:30","06:00","06:30","07:00","08:30","09:00","09:30","10:00","10:30",
       "11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30",
-      "15:30","16:00","16:30","17:00","17:30","18:00","18:30","19:00","19:30","20:00",
+      "16:00","16:30","17:00","17:30","18:00","18:30","19:00","19:30","20:00",
       "20:30","21:00","21:30","22:00","22:30","23:00","23:30",
-      ]
+      ],
+      selectTime: []
     }
   },
 
@@ -44,8 +45,26 @@ export default {
     
     toggleBtn: function(event) {
       const targetTag = event.target
-      targetTag.classList =  'btn selected'
-      
+      if (this.selectTime.length === 5) {
+        alert ('5타임 까지만 신청할 수 있습니다.')
+      } else{
+      targetTag.classList.toggle('selected')
+      console.log(targetTag)
+
+      if (targetTag.classList.value === 'selected') {
+        const bookingTime = targetTag.innerText
+        this.selectTime.push(bookingTime)
+        console.log(this.selectTime) } else {
+          for (targetTag.innerText in this.selectTime) {
+            const bookingTime = targetTag.innerText
+
+            // const index = bookingTime.indexOf(bookingTime)
+            // this.selectTime.splice(index, 1)
+
+            this.selectTime.pop(bookingTime)
+          }
+        }
+      }
     },
 
 
@@ -71,14 +90,15 @@ export default {
   flex-wrap: wrap;
 }
  
-.btn{
+button{
   width: 10%;
-  border: 1px solid darkcyan;
+  border: 1px solid gray;
+  border-radius: 30px;
 }
 
 .selected{
   color: wheat;
-  background-color: #0F4C81;
+  background-color: #9fc9ee;
 }
 
 </style>
