@@ -1,37 +1,37 @@
 <template>
   <div>
     <h1>AppChild</h1>
-    <input type="text"
-    v-model="childData"
-    @keyup.enter="childInput">
-    <h3>appData: {{}}</h3>
-    <h3>parentData: {{}}</h3>
-    <h3>childData: {{childData}}</h3>
+    <input type="text" @input='inputChange' v-model="appChildData">
+    <h3>appData: {{ appData }}</h3>
+    <h3>parentData: {{ appParentData }}</h3>
+    <h3>childData: {{ appChildData }}</h3>
   </div>
-</template>
+</template> 
 
 <script>
 export default {
   name: 'AppChild',
   props: {
-    dynamicProps: String
-  },
-  data: function () {
-    return {
-      childData: null,
-    }
+    appData: String,
+    appParentData: String
   },
   methods: {
-    childInput: function(){
-      this.$emit('child-input', this.childData)
-      this.$emit('child-to-app', this.childData)
-      this.childData = null
-    },
-
+  inputChange(event) {
+    // console.log(event.target.value)
+    this.appChildData = event.target.value
+    this.$emit('child-input', event.target.value)
+  }
+},
+  data () {
+    return {
+      appChildData: ''
+    }
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+  div {
+    border: 1px solid blue;
+  }
 </style>

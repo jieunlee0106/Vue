@@ -1,33 +1,43 @@
 <template>
   <div id="app">
     <h1>App</h1>
-    <input type="text" v-model="appData" @keyup.enter="createAppData">
-    <h3>parentData: {{}}</h3>
-    <h3>childData: {{}}</h3>
-    <AppParent/>
-    <AppChild
-    :dynamic-props="dynamicProps"
-    @child
-    />
+    <input type="text" v-model='appData'>
+    <h3>parentData: {{ parentData }}</h3>
+    <h3>childData: {{ childData }}</h3>
+    <AppParent 
+    :app-data="appData"
+    @parent-input="parentInput"
+    @child-input="childInput"/>
+    
     
 
   </div>
 </template>
 
 <script>
-import AppChild from './components/AppChild.vue'
-import AppParent from './components/AppParent.vue'
+
+import AppParent from '@/components/AppParent.vue'
 
 export default {
   name: 'App',
   components: {
     AppParent,
-    AppChild
   },
-  data: function(){
+  data (){
     return {
-      dynamicProps
+      appData:'',
+      parentData: '',
+      childData: ''
     }
+  },
+  methods: {
+    parentInput(inputData){
+      this.parentData = inputData
+    },
+    childInput(inputData){
+      this.childData = inputData
+    },
+
   }
 }
 
@@ -41,5 +51,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+
+  border: 1px solid black;
 }
 </style>
