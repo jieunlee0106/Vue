@@ -44,30 +44,23 @@ export default {
   methods: {
     
     toggleBtn: function(event) {
+      
       const targetTag = event.target
-      if (this.selectTime.length === 5) {
-        alert ('5타임 까지만 신청할 수 있습니다.')
-      } else{
-      targetTag.classList.toggle('selected')
-      console.log(targetTag)
+      const bookingTime = targetTag.innerText
+      const index = this.selectTime.indexOf(bookingTime)
 
-      if (targetTag.classList.value === 'selected') {
-        const bookingTime = targetTag.innerText
-        this.selectTime.push(bookingTime)
-        console.log(this.selectTime) } else {
-          for (targetTag.innerText in this.selectTime) {
-            const bookingTime = targetTag.innerText
-
-            // const index = bookingTime.indexOf(bookingTime)
-            // this.selectTime.splice(index, 1)
-
-            this.selectTime.pop(bookingTime)
-          }
+      if (index === -1) {
+        if (this.selectTime.length === 5) {
+          alert ('5타임 까지만 신청할 수 있습니다.')
+          return 
         }
-      }
+        targetTag.classList.add('selected')
+        this.selectTime.push(bookingTime)
+      } else {
+        targetTag.classList.remove('selected')
+        this.selectTime.splice(index, 1)
+      }  
     },
-
-
   }
 }
 
