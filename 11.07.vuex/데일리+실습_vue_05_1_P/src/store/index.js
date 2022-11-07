@@ -6,60 +6,72 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     orderList: [],
+
     menuList: [ 
       {
       title: '아메리카노',
       price: 3000,
-      selected: true,
-      image: 'https://source.unsplash.com/featured/?americano>'
+      selected: false,
+      image: "https://source.unsplash.com/featured/?americano"
       },
       {
       title: '라떼',
-      price: 3500,
-      selected: true,
-      image: 'https://source.unsplash.com/featured/?americano>'
+      price: 4000,
+      selected: false,
+      image: 'https://source.unsplash.com/featured/?latte'
       },
       {
-      title: '모카',
-      price: 3800,
-      selected: true,
-      image: 'https://source.unsplash.com/featured/?americano>'
+      title: '카푸치노',
+      price: 4500,
+      selected: false,
+      image: 'https://source.unsplash.com/featured/?cappuccino'
       },
     ],
+
     sizeList: [
       {
         name: 'small',
-        pprice: 500,
-        selected: true
+        price: 0,
+        selected: false
       },
       {
-        name: 'tall',
-        pprice: 600,
-        selected: true
+        name: 'midium',
+        price: 500,
+        selected: false
       },
       {
-        name: 'grande',
-        pprice: 800,
-        selected: true
+        name: 'large',
+        price: 100,
+        selected: false
       },
     ],
+
+    optionList: [
+      {
+        name: '샷',
+        price: 500,
+        count: 0,
+      },
+      {
+        name: '바닐라 시럽',
+        price: 500,
+        count: 0,
+      },
+      {
+        name: '카라멜 시럽',
+        price: 500,
+        count: 0,
+      },
+    ]
   },
   getters: {
   },
   mutations: {
-    addOrder: function () {},
-    updateMenuList(state, menuItem) {
-      console.log(menuItem)
-      state.menuList = state.menuList.map((menu) => {
-        if (menuItem === menu)
-      })
+
     },
-    updateSizeList: function () {},
-  },
+
   actions: {
-    updateMenuList(context, menu) {
-      context.commit('updateMenuList', menu)
-    },
+
   },
   modules: {
   }
