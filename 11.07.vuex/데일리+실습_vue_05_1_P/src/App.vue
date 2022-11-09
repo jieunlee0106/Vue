@@ -8,15 +8,12 @@
         <button
         v-for="coffee in menuList"
         :key="coffee.title"
-         
+        @click="selectCoffee"
+        :value=coffee
         >
           <img :src="coffee.image" width="30px;" height="30px" alt="">
-          <div @click="selectCoffee">
-            {{ coffee.title }}
-          </div>
-          <div>
-            {{ coffee.price }}원
-          </div>
+            <h5>{{ coffee.title }}</h5>
+            <p>{{ coffee.price }}원</p>
         </button>
       </div>
 
@@ -25,13 +22,14 @@
         <button
         v-for="size in sizeList"
         :key="size.name"
+        @click="selectSize"
         >
-          <div>
+          <h5>
             {{ size.name}}
-          </div>
-          <div>
+          </h5>
+          <p>
             {{ size.price }}원
-          </div>
+          </p>
         </button>
       </div>
 
@@ -64,51 +62,99 @@
   </div>
 </template>
 
+
 <script>
+import  {mapState} from 'vuex'
+
 export default {
   name: 'App',
   data() {
     return {
-      selectcoffee: []
+      selectcoffee: [],
+      selectsize: [],
+      coffeePrice: [],
+      totalPrice: 0,
+      option1: 0,
+      option2: 0,
+      option3: 0,
     }
   },
   computed: {
-    menuList() {
-      return this.$store.state.menuList
-    },    
-    
-    sizeList() {
-      return this.$store.state.sizeList
-    },  
-    
-    optionList() {
-      return this.$store.state.optionList
-    }
-    
+    ...mapState(['menuList', 'sizeList', 'optionList']),
+    // menuList() {
+    //   return this.$store.state.menuList
+    // },
+
+    // sizeList() {
+    //   return this.$store.state.sizeList
+    // },
+
+    // optionList() {
+    //   return this.$store.state.optionList
+    // }
+
   },
 
   methods: {
+
     selectCoffee(event) {
-      const targetTag = event.target
-      const coffeeName = targetTag.innerText
-      const index = this.selectcoffee.indexOf(coffeeName)
-    
+      const targetTag = event.currentTarget
+      const coffee = targetTag.querySelector('h5').innerText
+      // const price = targetTag.querySelector('p').innerText
+      const index = this.selectcoffee.indexOf(coffee)
+
       if (index === -1) {
         if (this.selectcoffee.length === 1){
           alert ('커피는 한가지만 선택 가능합니다')
           return
         }
         targetTag.classList.add('selected-coffee')
-        this.selectcoffee.push(coffeeName)
+        this.selectcoffee.push(coffee)
+        if (coffee === '아메리카노') {
+          this.totalPrice += 3000
+  
+        } 
       }
       else {
         targetTag.classList.remove('selected-coffee')
         this.selectcoffee.splice(index, 1)
       }
+      console.log(targetTag)
+      console.log(coffee)
+
+    },
+
+    selectSize(event) {
+      const targetTag = event.currentTarget
+      console.log(targetTag)
+      const size = targetTag.querySelector('h5').innerText
+      const sizePrice = targetTag.querySelector('p').innerText
+      const index = this.selectsize.indexOf(size)
+
+      if (index === -1) {
+        if (this.selectsize.length === 1){
+          alert ('사이즈는 한가지만 선택 가능합니다')
+          return
+        }
+        targetTag.classList.add('selected-size')
+        this.selectsize.push(size)
+      }
+      else {
+        targetTag.classList.remove('selected-size')
+        this.selectsize.splice(index, 1)
+      }
+
+      console.log(targetTag)
+      console.log(size)
+      console.log(sizePrice)
+
     }
+
+
   }
 }
 </script>
+
 
 <style>
 * {

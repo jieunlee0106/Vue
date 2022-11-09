@@ -4,7 +4,7 @@
     @click="updateTodoStatus"
     :class="{'is-completed': todo.isCompleted}"
     > 
-    {{ todo.title }} 
+    {{ todo.title }}  
     </span>
     <button @click="deleteTodo">Delete</button>
   </div>

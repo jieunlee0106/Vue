@@ -4,7 +4,7 @@
     v-for="(todo, index) in todos"
     :key="index"
     :todo="todo"
-    />
+    /> 
   </div>
 </template>
 

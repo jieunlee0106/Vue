@@ -35,7 +35,7 @@ export default new Vuex.Store({
       const index = state.todos.indexOf(todoItem)
       state.todos.splice(index, 1) 
       // 이 인덱스를 제외하고 원본 만듬
-    },
+    }, 
     UPDATE_TODO_STATUS(state, todoItem) {
       console.log(todoItem)
       // todos 배열 에서 선택된 todo의 iscomplated 값만 토글 한 후
