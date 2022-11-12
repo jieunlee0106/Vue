@@ -18,7 +18,8 @@ export default {
   },
   data: function () {
     return {
-      todos: []
+      todos: [],
+      togo: ''
     }
   },
 
